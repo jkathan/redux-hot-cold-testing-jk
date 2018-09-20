@@ -19,7 +19,7 @@ describe('restartGame', () => {
 describe('makeGuess', () => {
     it('Should return the action', () => {
         const guess = 40;
-        const action = restartGame(guess);
+        const action = makeGuess(guess);
         expect(action.type).toEqual(MAKE_GUESS);
         expect(action.guess).toEqual(guess);
     });

@@ -9,19 +9,20 @@ describe('<GuessForm />', () => {
     shallow(<GuessForm />);
   });
 
-  it('Should fire the onMakeGuess callback when the form is submitted', () => {
+  it('Should dispatch onMakeGuess when the form is submitted', () => {
     const dispatch = jest.fn();
-    const wrapper = mount(<GuessForm onMakeGuess={dispatch} />);
-    const value = 10;
+    const wrapper = mount(<GuessForm dispatch={dispatch} />);
+    const value = '10';
     wrapper.find('input[type="number"]').instance().value = value;
     wrapper.simulate('submit');
     expect(dispatch).toHaveBeenCalledWith(makeGuess(value));
   });
 
   it('Should reset the input when the form is submitted', () => {
-    const wrapper = mount(<GuessForm />);
+    const wrapper = mount(<GuessForm dispatch={() => {}} />);
     const input = wrapper.find('input[type="number"]');
-    input.instance().value = 10;
+    input.instance().value = '10';
     wrapper.simulate('submit');
     expect(input.instance().value).toEqual('');
+  });
 });
